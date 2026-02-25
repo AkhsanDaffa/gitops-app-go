@@ -6,7 +6,7 @@ import (
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello GitOps! Saya berhasil membuat Full CI/CD Pipeline!")
+	fmt.Fprintf(w, "Hello GitOps! Saya berhasil membuat Full CI/CD Pipeline! Automate Webhook")
 }
 
 func main() {
