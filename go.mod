@@ -1,3 +1,3 @@
 module github.com/AkhsanDaffa/gitops-app-go
 
-go 1.25.7
+go 1.22.0
