@@ -6,7 +6,7 @@ import (
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello GitOps v1! CI/CD Pipeline is working.")
+	fmt.Fprintf(w, "Hello GitOps! Saya berhasil membuat Full CI/CD Pipeline!")
 }
 
 func main() {
