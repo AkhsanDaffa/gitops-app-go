@@ -9,16 +9,26 @@ pipeline {
     }
 
     stages {
-        stage('1. Checkout Code') {
-            steps {
-                echo "Mengambil kode dari GitHub..."
-                git branch: 'main', url: 'https://github.com/AkhsanDaffa/gitops-app-go.git'
-            }
-        }
+        // stage('1. Checkout Code') {
+        //     steps {
+        //         echo "Mengambil kode dari GitHub..."
+        //         git branch: 'main', url: 'https://github.com/AkhsanDaffa/gitops-app-go.git'
+        //     }
+        // }
 
         stage('2. Unit Test (Golang)') {
             steps {
                 echo "Menjalankan testing..."
+                // sh '''
+                // cat <<EOF > Dockerfile.test
+                // FROM golang:1.22-alpine
+                // WORKDIR /app
+                // COPY . .
+                // RUN go test -v ./...
+                // EOF
+                // docker build -t test-runner -f Dockerfile.test .
+                // '''            
+                
                 sh '''
                 cat <<EOF > Dockerfile.test
                 FROM golang:1.22-alpine
@@ -26,8 +36,9 @@ pipeline {
                 COPY . .
                 RUN go test -v ./...
                 EOF
+                
                 docker build -t test-runner -f Dockerfile.test .
-                '''            }
+                '''}
         }
 
         stage('3. Build Docker Image') {
