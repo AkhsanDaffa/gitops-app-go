@@ -9,36 +9,19 @@ pipeline {
     }
 
     stages {
-        // stage('1. Checkout Code') {
-        //     steps {
-        //         echo "Mengambil kode dari GitHub..."
-        //         git branch: 'main', url: 'https://github.com/AkhsanDaffa/gitops-app-go.git'
-        //     }
-        // }
-
         stage('2. Unit Test (Golang)') {
             steps {
-                echo "Menjalankan testing..."
-                // sh '''
-                // cat <<EOF > Dockerfile.test
-                // FROM golang:1.22-alpine
-                // WORKDIR /app
-                // COPY . .
-                // RUN go test -v ./...
-                // EOF
-                // docker build -t test-runner -f Dockerfile.test .
-                // '''            
+                echo "Menjalankan testing..."          
+ // Cara elegan dan aman membuat file di Jenkins
+                writeFile file: 'Dockerfile.test', text: '''FROM golang:1.22-alpine
+WORKDIR /app
+COPY . .
+RUN go test -v ./...
+'''
                 
-                sh '''
-                cat <<EOF > Dockerfile.test
-                FROM golang:1.22-alpine
-                WORKDIR /app
-                COPY . .
-                RUN go test -v ./...
-                EOF
-                
-                docker build -t test-runner -f Dockerfile.test .
-                '''}
+                // Menjalankan docker build (Pasti tereksekusi sekarang!)
+                // Tambahkan --no-cache agar docker tidak menggunakan memori masa lalu
+                sh 'docker build --no-cache -t test-runner -f Dockerfile.test .'}
         }
 
         stage('3. Build Docker Image') {
