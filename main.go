@@ -7,7 +7,8 @@ import (
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello GitOps! Saya berhasil membuat Full CI/CD Pipeline! Automate Webhook")
-	// test gembok
+	// test gembok PR Github
+	// ini cuma komentar pancingan untuk Jenkins
 }
 
 func main() {
