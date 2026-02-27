@@ -22,8 +22,8 @@ func TestHelloHandler(t *testing.T) {
 	}
 
 	// Cek apakah kata 'GitOps' ada di respons
-	expected := "Hello GitOps! Saya berhasil membuat Full CI/CD Pipeline! Automate Webhook"
-	//expected := "Ini Pasti Error"
+	//expected := "Hello GitOps! Saya berhasil membuat Full CI/CD Pipeline! Automate Webhook"
+	expected := "Ini Sengaja Disalahkan Untuk Cek Rapor"
 	if rr.Body.String() != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
 	}
